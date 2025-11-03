@@ -17,37 +17,6 @@ const descs = [
   "this user will follow you through your API calls"
 ];
 
-// -------------------- TILT --------------------
-const card = document.querySelector(".card-inner");
-let curX = 0, curY = 0, tgtX = 0, tgtY = 0, rafId;
-
-function animateTilt(){
-  curX += (tgtX - curX) * 0.18;
-  curY += (tgtY - curY) * 0.18;
-  card.style.transform = `translateZ(35px) rotateX(${curY}deg) rotateY(${curX}deg) scale(1.04)`;
-  if(Math.abs(tgtX - curX) > 0.01 || Math.abs(tgtY - curY) > 0.01){
-    rafId = requestAnimationFrame(animateTilt);
-  } else {
-    cancelAnimationFrame(rafId);
-    rafId = null;
-  }
-}
-
-document.querySelector(".card").addEventListener("mousemove", e => {
-  const r = e.currentTarget.getBoundingClientRect();
-  const x = e.clientX - (r.left + r.width/2);
-  const y = e.clientY - (r.top + r.height/2);
-  const MAX = 14, SENS = 18;
-  tgtX = Math.max(-MAX, Math.min(MAX, x / SENS));
-  tgtY = Math.max(-MAX, Math.min(MAX, -y / SENS));
-  if(!rafId) rafId = requestAnimationFrame(animateTilt);
-});
-
-document.querySelector(".card").addEventListener("mouseleave", () => {
-  tgtX = 0; tgtY = 0;
-  if(!rafId) rafId = requestAnimationFrame(animateTilt);
-});
-
 // -------------------- DISPLAY UPDATE --------------------
 function getGrade(role) {
   if (["Initiate", "Ritualist Ascendant"].includes(role)) return "Common";
