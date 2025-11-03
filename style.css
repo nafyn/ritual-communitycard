@@ -67,18 +67,15 @@ button:hover {
   align-items: center;
   justify-content: flex-start;
   gap: 40px;
-  transform-origin: center center;
+  transform: none;
+  transition: none;
   backface-visibility: hidden;
-  transform-style: preserve-3d;
-  will-change: transform;
-  transition: transform 0.25s ease-out;
 }
 
 .card:hover{
-  border-color: rgba(12,166,120,.6);
-  box-shadow:
-    0 0 18px rgba(12,166,120,.28),
-    0 0 42px rgba(12,166,120,.12);
+  .card:hover{
+  border-color: rgba(12,166,120,.38);
+  box-shadow: 0 0 0 1px rgba(12,166,120,.14) inset;
 }
 
 .avatar-wrapper {
