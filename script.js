@@ -58,4 +58,36 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
   });
 });
 
+async function uploadTo0x0(blob) {
+  const form = new FormData();
+  form.append("file", blob, "card.png");
+  
+  const res = await fetch("https://0x0.st", {
+    method: "POST",
+    body: form
+  });
+
+  return await res.text(); // renvoie directement l’URL finale (ex: https://0x0.st/abcd.png)
+}
+
+async function shareToTwitter() {
+  const card = document.getElementById("card");
+
+  // Convertit la carte en blob (pas juste DataURL, nécessaire pour upload)
+  const blob = await htmlToImage.toBlob(card, { pixelRatio: 2 });
+
+  // Upload vers 0x0.st → on récupère l'URL publique
+  const imageUrl = await uploadTo0x0(blob);
+
+  // Texte du tweet (customisable)
+  const tweetText = encodeURIComponent(
+"i have taken the pledge.\n\nthe ritual grows stronger.\nhttps://nafyn.github.io/ritual-communitycard/"
+);
+
+  // Ouvre Twitter avec l’image
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=${encodeURIComponent(imageUrl)}`;
+  window.open(tweetUrl, "_blank");
+}
+
+
 update();
