@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 /* === PAGE BACKGROUND HALO === */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -77,12 +85,13 @@ select:focus, select:hover {
 
 /* === LAYOUT === */
 .layout {
-  width: min(92vw, 1600px);
-  margin: 120px auto;
+  width: min(90vw, 1600px);
+  margin: 0 auto;
+  padding-top: 100px;
   display: grid;
   grid-template-columns: 320px 1fr;
-  gap: 80px;
-  align-items: start;
+  gap: 60px;
+  align-items: center;
 }
 
 /* === LEFT PANEL (SEXY NOW) === */
@@ -133,10 +142,15 @@ input:focus, select:focus {
   gap: 32px;
 }
 
+.preview-zone .card {
+  transform: scale(0.82); /* ajuste entre 0.75 et 0.9 selon ton écran */
+  transform-origin: center top;
+}
+
 .download-wrap {
-  margin-top: 40px;
   display: flex;
   justify-content: center;
+  margin-bottom: 26px;
 }
 
 .card {
