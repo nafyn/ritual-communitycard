@@ -71,6 +71,8 @@ avatarInput.addEventListener("change", () => {
   avatarPreview.src = URL.createObjectURL(file);
 });
 
+document.getElementById("rarityPill").textContent = grade;
+
 document.getElementById("downloadBtn").addEventListener("click", () => {
   const card = document.getElementById("card");
   htmlToImage.toPng(card).then((dataUrl) => {
