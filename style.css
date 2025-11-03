@@ -81,12 +81,23 @@ button:hover {
     0 0 42px rgba(12,166,120,.12);
 }
 
-.avatar-wrapper, .avatar {
-  width: 132px;              
+.avatar-wrapper {
+  width: 132px;
   height: 132px;
   border-radius: 12px;
-  object-fit: cover;
   border: 1px solid rgba(12,166,120,.28);
+  background: rgba(12,166,120,.06); /* ✅ placeholder subtil */
+  display: flex;                    /* ✅ pour centrer l’image */
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;                 /* ✅ évite dépassement img */
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                /* ✅ bouge ici */
+  border-radius: inherit;
 }
 
 .info,
