@@ -50,20 +50,19 @@ button:hover {
 }
 
 .card {
-  width: 680px;
-  padding: 18px 22px;
+  width: 720px;
+  padding: 26px 32px;
   border-radius: 14px;
-  background: #0F1111;
+  background: #0f1111;
   border: 1px solid #144C43;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 26px;
   position: relative;
-  margin-top: 50px;
-  box-shadow: 0 0 12px #0A0F0F inset;
+  box-shadow: 0 0 22px #0a0f0f inset, 0 0 40px #00000055;
   transform-style: preserve-3d;
-  transform: perspective(900px) rotateX(0deg) rotateY(0deg);
-  transition: transform 0.25s cubic-bezier(.17,.67,.43,1.32);
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(.21,.54,.32,1.22);
 }
 
 /* grain/holo stays — do NOT remove your :before / :after */
