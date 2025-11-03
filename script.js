@@ -16,21 +16,47 @@ const descs = [
   "this user will follow you through your API calls"
 ];
 
+// --- TILT clean: rAF + clamp + easing ---
 const card = document.querySelector(".card");
 
+let currentX = 0, currentY = 0;   // angles affichés
+let targetX  = 0, targetY  = 0;   // angles visés
+let rafId = null;
+
+function animateTilt() {
+  // interpolation douce (lerp)
+  currentX += (targetX - currentX) * 0.18;
+  currentY += (targetY - currentY) * 0.18;
+
+  card.style.transform =
+    `perspective(900px) rotateX(${currentY}deg) rotateY(${currentX}deg) scale(1.04)`;
+
+  if (Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01) {
+    rafId = requestAnimationFrame(animateTilt);
+  } else {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+}
+
 card.addEventListener("mousemove", (e) => {
-  const rect = card.getBoundingClientRect();
-  const x = e.clientX - rect.left - rect.width / 2;
-  const y = e.clientY - rect.top - rect.height / 2;
+  const r = card.getBoundingClientRect();
+  const x = e.clientX - (r.left + r.width  / 2);
+  const y = e.clientY - (r.top  + r.height / 2);
 
-  const rotateX = (-y / 18);
-  const rotateY = (x / 18);
+  // clamp pour éviter les “sauts moches”
+  const MAX = 12;                 // amplitude visible
+  targetX = Math.max(-MAX, Math.min(MAX,  x / 20));   // -> rotateY
+  targetY = Math.max(-MAX, Math.min(MAX, -y / 20));   // -> rotateX
 
-  card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+  if (!rafId) rafId = requestAnimationFrame(animateTilt);
 });
 
 card.addEventListener("mouseleave", () => {
-  card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
+  // retour smooth au neutre
+  targetX = 0;
+  targetY = 0;
+  if (!rafId) rafId = requestAnimationFrame(animateTilt);
 });
 
 function getGrade(role) {
