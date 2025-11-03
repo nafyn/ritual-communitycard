@@ -254,7 +254,7 @@ input:focus, select:focus {
   justify-content: center;
 }
 
-#downloadBtn {
+#pledgeBtn {
   padding: 20px 34px;
   margin-top: -100px;
   border-radius: 999px;
@@ -273,7 +273,7 @@ input:focus, select:focus {
 }
 
 /* hover */
-#downloadBtn:hover {
+#pledgeBtn:hover {
   background: rgba(20, 80, 50, 0.55);
   border-color: rgba(150, 255, 200, 0.9);
   outline-color: rgba(130, 255, 180, 0.45);
@@ -281,7 +281,7 @@ input:focus, select:focus {
 }
 
 /* pressed */
-#downloadBtn:active {
+#pledgeBtn:active {
   transform: scale(0.96);
   background: rgba(15, 60, 35, 0.8);
 }
