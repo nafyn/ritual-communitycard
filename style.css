@@ -47,36 +47,37 @@ button:hover {
 
 .card {
   position: relative;
-  width: 730px;
-  height: 250px;
+  width: 820px;
+  height: 280px;
   background: #0e0f0f;
   border: 1px solid #144C43;
-  border-radius: 14px;
+  border-radius: 18px;
   perspective: 900px;
   transform-style: preserve-3d;
-}
-
-.card-inner {
-  transform-origin: center center;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
+  box-shadow:
+    0 0 14px rgba(12,166,120,.08),
+    0 0 50px rgba(12,166,120,.04);
 }
 
 .card-inner {
   width: 100%;
   height: 100%;
-  padding: 28px 36px;
+  padding: 32px 42px;
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 40px;
+  transform-origin: center center;
+  backface-visibility: hidden;
   transform-style: preserve-3d;
   will-change: transform;
   transition: transform 0.25s ease-out;
 }
 
 .card:hover{
-  border-color: rgba(12,166,120,.38);
-  box-shadow: 0 0 0 1px rgba(12,166,120,.14) inset, 0 16px 54px #000a inset;
+  border-color: rgba(12,166,120,.6);
+  box-shadow:
+    0 0 18px rgba(12,166,120,.28),
+    0 0 42px rgba(12,166,120,.12);
 }
 
 .avatar-wrapper, .avatar {
@@ -113,7 +114,7 @@ button:hover {
   color: #E7ECEB;
   opacity: 0.7;
   font-style: italic;
-  margin-top: 4px;
+  margin-top: 14px;
 }
 
 .header {
@@ -171,3 +172,28 @@ button:hover {
   mix-blend-mode: overlay;
   pointer-events: none;
 }
+
+.rarity-pill {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  padding: 4px 14px 5px;
+  border-radius: 999px;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  border: 1px solid rgba(12,166,120,.45);
+  color: rgba(12,166,120,.9);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.rc-mark {
+  position: absolute;
+  bottom: 18px;
+  right: 24px;
+  height: 26px;
+  opacity: 0.45;
+  filter: drop-shadow(0 0 4px rgba(12,166,120,.25));
+  pointer-events: none;
+}
+
