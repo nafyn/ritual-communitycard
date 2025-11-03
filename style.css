@@ -29,30 +29,24 @@ body:before {
 }
 
 .header {
-  position: fixed;
-  top: 32px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: absolute;
+  top: 22px;
+  left: 32px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 500;
-  color: #E7ECEB;
-  opacity: .88;
   pointer-events: none;
-  text-shadow: 0 0 10px rgba(12,166,120,.25);
+  color: #E7ECEB;
 }
 
 .header .dot {
   width: 9px;
   height: 9px;
-  border-radius: 50%;
   background: #0CA678;
-  box-shadow: 0 0 6px #0CA678, 0 0 14px #0CA67855;
-}
-
-.header .dot {
+  border-radius: 50%;
+  margin-right: 10px;
+  box-shadow: 0 0 8px #0CA678;
   animation: pulse-dot 2.8s ease-in-out infinite;
 }
 
@@ -77,29 +71,25 @@ button:hover {
   border-color: #0CA678;
 }
 
-/* === CARD === */
 .card{
   position: relative;
-  width: clamp(760px, 68vw, 1040px);
-  height: 280px;                     /* plus haute */
-  margin-top: 24px;
-  border-radius: 16px;
-  background: #0f1111;               /* plein, sans holo */
+  width: 960px;              /* largeur fixe propre */
+  height: 300px;             /* ratio plus long */
+  margin-top: 40px;
+  border-radius: 18px;
+  background: #0f1111;
   border: 1px solid rgba(12,166,120,.25);
   box-shadow:
-    inset 0 0 0 1px rgba(12,166,120,.10), /* lueur interne */
-    0 18px 60px rgba(0,0,0,.55);          /* drop soft */
+    inset 0 0 0 1px rgba(12,166,120,.12),
+    0 18px 60px rgba(0,0,0,.55);
   overflow: hidden;
 }
 
 .card-inner{
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding: 28px 36px;
+  padding: 34px 44px;
   display: grid;
-  grid-template-columns: 132px 1fr;
-  column-gap: 28px;
+  grid-template-columns: 160px 1fr; /* avatar un peu plus large */
+  column-gap: 36px;
   align-items: center;
 }
 
@@ -110,17 +100,15 @@ button:hover {
     0 22px 70px rgba(0,0,0,.6);
 }
 
-/* === AVATAR === */
 .avatar-wrapper{
-  width: 132px;
-  height: 132px;
-  border-radius: 12px;
+  width: 160px;
+  height: 160px;
+  border-radius: 14px;
   border: 1px solid rgba(12,166,120,.28);
-  display: grid;
-  place-items: center;
-  background: linear-gradient(180deg,#0b0e0e,#0f1212);
-  box-shadow: inset 0 0 24px rgba(12,166,120,.08);
+  background: linear-gradient(180deg,#0b0e0e,#101414);
+  box-shadow: inset 0 0 28px rgba(12,166,120,.08);
 }
+
 .avatar{
   width: 100%;
   height: 100%;
@@ -188,22 +176,18 @@ button:hover {
 .card::after{ content:none !important; }
 
 .footer {
-  position: fixed;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: .65;
-  font-size: 15px;
-  letter-spacing: .01em;
+  position: absolute;
+  bottom: 22px;
+  left: 32px;
+  font-size: 14px;
+  opacity: 0.75;
 }
 
 .footer a {
   color: #0CA678;
   text-decoration: none;
-  transition: .25s;
 }
-
 .footer a:hover {
   opacity: 1;
-  text-shadow: 0 0 12px #0CA67888;
+  text-shadow: 0 0 6px #0CA67899;
 }
