@@ -45,8 +45,7 @@ roleSelect.addEventListener("change", update);
 
 avatarInput.addEventListener("change", () => {
   const f = avatarInput.files?.[0];
-  if (!f) return;
-  avatarPreview.src = URL.createObjectURL(f);
+  avatarPreview.src = f ? URL.createObjectURL(f) : "pepefront.png";
 });
 
 document.getElementById("downloadBtn").addEventListener("click", () => {
