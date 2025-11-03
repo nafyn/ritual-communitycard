@@ -50,16 +50,19 @@ avatarInput.addEventListener("change", () => {
 
 document.getElementById("pledgeBtn").addEventListener("click", shareToTwitter);
 
-async function uploadTo0x0(blob) {
-  const form = new FormData();
-  form.append("file", blob, "card.png");
-  
-  const res = await fetch("https://0x0.st", {
+async function uploadToCatbox(blob) {
+  const formData = new FormData();
+  formData.append("reqtype", "fileupload");
+  formData.append("fileToUpload", blob, "card.png");
+
+  const res = await fetch("https://catbox.moe/user/api.php", {
     method: "POST",
-    body: form
+    body: formData,
   });
 
-  return await res.text(); // renvoie directement l’URL finale (ex: https://0x0.st/abcd.png)
+  const text = await res.text();
+  if (!text.startsWith("https")) throw new Error("Upload failed: " + text);
+  return text.trim();
 }
 
 async function shareToTwitter() {
@@ -68,8 +71,8 @@ async function shareToTwitter() {
   // Convertit la carte en blob (pas juste DataURL, nécessaire pour upload)
   const blob = await htmlToImage.toBlob(card, { pixelRatio: 2 });
 
-  // Upload vers 0x0.st → on récupère l'URL publique
-  const imageUrl = await uploadTo0x0(blob);
+  // Upload vers Catbox → on récupère l'URL publique
+  const imageUrl = await uploadToCatbox(blob);
 
   // Texte du tweet (customisable)
   const tweetText = encodeURIComponent(
@@ -80,6 +83,5 @@ async function shareToTwitter() {
   const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=${encodeURIComponent(imageUrl)}`;
   window.open(tweetUrl, "_blank");
 }
-
 
 update();
