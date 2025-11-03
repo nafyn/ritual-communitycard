@@ -255,22 +255,33 @@ input:focus, select:focus {
 }
 
 #downloadBtn {
-  padding: 14px 36px;
-  margin-top: -50px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 15px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.10);
+  padding: 10px 34px;
+  border-radius: 999px;
+  
+  background: rgba(15, 50, 30, 0.35); /* fond très sombre mais légèrement teinté */
+  border: 2px solid rgba(130, 255, 180, 0.55);
+  outline: 3px solid rgba(130, 255, 180, 0.15);
+
+  color: #A6FFCB;
+  font-size: 18px;
+  font-weight: 500;
+
   cursor: pointer;
-  transition: .25s;
+  transition: 0.25s ease;
+  backdrop-filter: blur(12px);
 }
 
+/* hover */
 #downloadBtn:hover {
-  border-color: #0CA678;
-  background: rgba(12,166,120,.12);
-  box-shadow: 0 0 18px rgba(12,166,120,.25);
+  background: rgba(20, 80, 50, 0.55);
+  border-color: rgba(150, 255, 200, 0.9);
+  outline-color: rgba(130, 255, 180, 0.45);
+  color: #C7FFE0;
+}
+
+/* pressed */
+#downloadBtn:active {
+  transform: scale(0.96);
+  background: rgba(15, 60, 35, 0.8);
 }
 
