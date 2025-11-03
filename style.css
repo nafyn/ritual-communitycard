@@ -153,10 +153,13 @@ button:hover {
 /* === PETIT LOGO (bottom-right) === */
 .brand-mark {
   position: absolute;
-  right: clamp(12px, 2vw, 28px);
+  left: clamp(12px, 2vw, 28px);   /* ← au lieu de right */
   bottom: clamp(12px, 2vw, 28px);
   width: clamp(18px, 2.4vw, 28px);
   opacity: .75;
+  filter: drop-shadow(0 0 4px rgba(12,166,120,.25));
+  pointer-events: none;
+  user-select: none;
 }
 
 .card::before,
