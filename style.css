@@ -45,21 +45,31 @@ button:hover {
   border-color: #0CA678;
 }
 
-.card{
-  width: var(--card-w);
+.card {
+  width: 820px;
+  height: 260px;                     /* ratio remilia */
   padding: 28px 34px;
   border-radius: 16px;
   background: #0f1111;
   border: 1px solid rgba(12,166,120,.28);
-  box-shadow: 0 0 0 1px rgba(12,166,120,.10) inset, 0 12px 40px #0008 inset;
-  display:flex; align-items:center; gap:26px;
-  position:relative;
-  overflow:hidden;                     /* clip everything, no overflow */
+  box-shadow: 0 0 0 1px rgba(12,166,120,.10) inset,
+              0 12px 40px #0008 inset;
+  position: relative;
+  overflow: hidden;
+  perspective: 1200px;               /* <- ici la perspective */
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  border-radius: inherit;
   transform-style: preserve-3d;
   backface-visibility: hidden;
+  transition: transform .25s cubic-bezier(.21,.54,.32,1.22);
   will-change: transform;
-  transition: transform .28s cubic-bezier(.21,.54,.32,1.22),
-              box-shadow .25s ease, border-color .25s ease;
 }
 .card:hover{
   border-color: rgba(12,166,120,.38);
@@ -140,21 +150,22 @@ button:hover {
   text-shadow: 0 0 6px #0CA67899;
 }
 
-.card::before{
+.card::before {
   content:"";
   position:absolute;
   inset:0;
   border-radius:inherit;
-  background:
-    conic-gradient(from 0deg at 50% 50%,
-      #ffffff66 0 30deg,
-      #00ffff66 30deg 90deg,
-      #aaffff66 90deg 150deg,
-      #66ffff66 150deg 210deg,
-      #ff99ff66 210deg 270deg,
-      #ffffff66 270deg 360deg);
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    #ffffff33 0 30deg,
+    #00ffff33 30deg 90deg,
+    #aaffff33 90deg 150deg,
+    #66ffff33 150deg 210deg,
+    #ff99ff33 210deg 270deg,
+    #ffffff33 270deg 360deg
+  );
   mix-blend-mode: screen;
-  opacity:.08;                 /* very subtle */
+  opacity: .08;
   pointer-events:none;
 }
 
