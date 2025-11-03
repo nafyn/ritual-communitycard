@@ -73,23 +73,24 @@ button:hover {
 
 .card{
   position: relative;
-  width: 960px;              /* largeur fixe propre */
-  height: 300px;             /* ratio plus long */
-  margin-top: 40px;
-  border-radius: 18px;
+  width: min(1000px, 82vw);   /* large mais jamais débile */
+  height: 230px;              /* ratio net et assumé */
+  margin-top: 48px;
+  border-radius: 16px;
   background: #0f1111;
   border: 1px solid rgba(12,166,120,.25);
   box-shadow:
     inset 0 0 0 1px rgba(12,166,120,.12),
-    0 18px 60px rgba(0,0,0,.55);
+    0 14px 48px rgba(0,0,0,.55);
   overflow: hidden;
 }
 
 .card-inner{
-  padding: 34px 44px;
+  height: 100%;
   display: grid;
-  grid-template-columns: 160px 1fr; /* avatar un peu plus large */
-  column-gap: 36px;
+  grid-template-columns: 150px 1fr;
+  padding: 32px 46px;
+  column-gap: 38px;
   align-items: center;
 }
 
@@ -101,42 +102,41 @@ button:hover {
 }
 
 .avatar-wrapper{
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   border-radius: 14px;
-  border: 1px solid rgba(12,166,120,.28);
-  background: linear-gradient(180deg,#0b0e0e,#101414);
-  box-shadow: inset 0 0 28px rgba(12,166,120,.08);
+  border: 1px solid rgba(12,166,120,.30);
+  background: #0c0f0f;
+  box-shadow: inset 0 0 22px rgba(12,166,120,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .avatar{
   width: 100%;
   height: 100%;
-  object-fit: cover;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 /* === TEXTS === */
 .info{ display: flex; flex-direction: column; }
 .pseudo{
-  font-size: 28px;
-  font-weight: 600;
-  margin: 0 0 6px 0;
-  color: #E7ECEB;
+  font-size: 26px;
+  margin-bottom: 4px;
 }
 
-/* on sépare bien la ligne verte de l’italique */
 .role-line{
-  margin: 0 0 10px 0;     /* <-- espace ajouté */
-  font-size: 17px;
+  margin-bottom: 10px;
   color: #0CA678;
 }
+
 .desc{
-  margin: 0;              /* propre */
-  font-size: 17px;
-  font-style: italic;
-  color: #E7ECEB;
+  margin-top: 6px;
+  font-size: 16px;
   opacity: .82;
+  font-style: italic;
 }
 
 /* === RARITY PILL (top-right) === */
