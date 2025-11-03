@@ -253,7 +253,7 @@ input:focus, select:focus {
 
 #downloadBtn {
   padding: 14px 36px;
-  margin-top: 28px;
+  margin-top: -50px;
   display: block;
   margin-left: auto;
   margin-right: auto;
