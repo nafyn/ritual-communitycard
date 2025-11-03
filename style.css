@@ -256,7 +256,7 @@ input:focus, select:focus {
 
 #downloadBtn {
   padding: 20px 34px;
-  margin-bottom: 50px;
+  margin-top: -100px;
   border-radius: 999px;
   
   background: rgba(15, 50, 30, 0.35); /* fond très sombre mais légèrement teinté */
