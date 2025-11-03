@@ -12,7 +12,7 @@
   <span>Ritual Card Generator</span>
 </header>  
 
-<div class="layout" style="align-self:center;">
+<div class="layout">
 
   <div class="controls">
     <input id="pseudo" type="text" placeholder="pseudo...">
@@ -31,7 +31,6 @@
     <input id="avatarInput" type="file" accept="image/*">
   </div>
 
-  <!-- PUT THIS INSIDE THE GRID -->
   <div class="preview-zone">
     <div class="card" id="card">
       <div class="card-inner">
@@ -49,14 +48,13 @@
       <div id="rarityPill" class="rarity-pill common">Common</div>
       <img src="Translucent.svg" class="brand-mark" />
     </div>
+
+    <div class="download-wrap">
+      <button id="downloadBtn">download card</button>
+    </div>
   </div>
 
-</div>
-
-  <div class="download-wrap">
-  <button id="downloadBtn">download card</button>
-  </div>
-
+</div> <!-- FIN .layout -->
 
 <script src="https://unpkg.com/html-to-image/dist/html-to-image.min.js"></script>
 <script src="script.js"></script>
