@@ -12,40 +12,47 @@
   <span>Ritual Card Generator</span>
 </header>  
 
-<div class="form">
-  <input id="pseudo" type="text" placeholder="pseudo...">
-  
-  <select id="role">
-    <option>Initiate</option>
-    <option>Ritualist Ascendant</option>
-    <option>Ritty Bitty</option>
-    <option>Ritty</option>
-    <option>Ritualist</option>
-    <option>Zealot</option>
-    <option>Mods</option>
-    <option>Foundation Team</option>
-  </select>
+<div class="layout">
 
-  <input id="avatarInput" type="file" accept="image/*">
-  <button id="downloadBtn">download card</button>
-</div>
-
-<div class="card" id="card">
-  <div class="card-inner">
+  <div class="controls">
+    <input id="pseudo" type="text" placeholder="pseudo...">
     
-    <div class="avatar-wrapper">
-      <img id="avatarPreview" class="avatar" />
-    </div>
+    <select id="role">
+      <option>Initiate</option>
+      <option>Ritualist Ascendant</option>
+      <option>Ritty Bitty</option>
+      <option>Ritty</option>
+      <option>Ritualist</option>
+      <option>Zealot</option>
+      <option>Mods</option>
+      <option>Foundation Team</option>
+    </select>
 
-    <div class="info">
-      <p id="pseudoDisplay" class="pseudo"></p>
-      <p id="roleDisplay" class="role-line"></p>
-      <p id="descDisplay" class="desc"></p>
-    </div>
+    <input id="avatarInput" type="file" accept="image/*">
+
+    <button id="downloadBtn">download card</button>
   </div>
 
-  <div id="rarityPill" class="rarity-pill common">Common</div>
-  <img src="brand.png" class="brand-mark" />
+  <div class="preview-zone">
+    <div class="card" id="card">
+      <div class="card-inner">
+        
+        <div class="avatar-wrapper">
+          <img id="avatarPreview" class="avatar" />
+        </div>
+
+        <div class="info">
+          <p id="pseudoDisplay" class="pseudo"></p>
+          <p id="roleDisplay" class="role-line"></p>
+          <p id="descDisplay" class="desc"></p>
+        </div>
+
+      </div>
+
+      <div id="rarityPill" class="rarity-pill common">Common</div>
+      <img src="brand.png" class="brand-mark" />
+    </div>
+  </div>
 </div>
 
 <script src="https://unpkg.com/html-to-image/dist/html-to-image.min.js"></script>
