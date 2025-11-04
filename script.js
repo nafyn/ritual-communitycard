@@ -93,7 +93,7 @@ async function copyCardToClipboard() {
       card.classList.remove("copied");
     }, 750);
 
-  }, 3000); // <<< 3 seconds now
+  }, 2000); // <<< 3 seconds now
 }
 
 document.getElementById("card").addEventListener("click", copyCardToClipboard);
