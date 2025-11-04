@@ -125,34 +125,32 @@ card.appendChild(summonSpan);
 
 const PLEDGE_URL = "https://api.npoint.io/290a358899c1e5d5553e";
 
-// Load and display count
+// Load & display count
 async function loadPledge() {
-  const res = await fetch(PLEDGE_URL);
+  const res = await fetch(PLEDGE_URL + `?t=${Date.now()}`, { cache: "no-store" });
   const data = await res.json();
   document.getElementById("pledgeCount").textContent =
     `${data.pledgeCount} initiates have taken the pledge · 🕯️`;
 }
 
-// Increment when user clicks pledge
+// Increment count
 async function incrementPledge() {
-  const res = await fetch(PLEDGE_URL);
+  const res = await fetch(PLEDGE_URL + `?t=${Date.now()}`, { cache: "no-store" });
   const data = await res.json();
   const newCount = data.pledgeCount + 1;
 
- await fetch(PLEDGE_URL, {
-  method: "POST",
-  headers: {"Content-Type": "application/json"},
-  body: JSON.stringify({ pledgeCount: newCount })
-});
+  await fetch(PLEDGE_URL, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ pledgeCount: newCount })
+  });
 
   document.getElementById("pledgeCount").textContent =
     `${newCount} initiates have taken the pledge · 🕯️`;
 }
 
-// Load on page start
+// On load
 loadPledge();
 
-// Add counter update to your pledge button
+// On pledge click
 document.getElementById("pledgeBtn").addEventListener("click", incrementPledge);
-
-
