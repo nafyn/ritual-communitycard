@@ -76,9 +76,8 @@ document.getElementById("card").addEventListener("click", copyCardToClipboard);
 function shareToTwitter() {
   const tweetText = encodeURIComponent(
 `i have taken the pledge.
-
 the ritual grows stronger.
-https://nafyn.github.io/ritual-communitycard/`
+take yours on https://nafyn.github.io/ritual-communitycard/`
   );
 
   const url = `https://twitter.com/intent/tweet?text=${tweetText}`;
