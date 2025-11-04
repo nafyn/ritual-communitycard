@@ -57,10 +57,9 @@ async function copyCardToClipboard() {
   const card = document.getElementById("card");
   const cardContent = document.getElementById("cardContent");
   const hint = document.querySelector(".copy-hint");
-  const summon = document.querySelector(".copy-summon");
   const feedback = document.querySelector(".copy-feedback");
 
-  // Hide UI overlays before capture
+  // Masque UI avant capture
   card.classList.add("hide-copy-ui");
 
   const blob = await htmlToImage.toBlob(cardContent, {
@@ -68,33 +67,24 @@ async function copyCardToClipboard() {
     backgroundColor: "#0d1512"
   });
 
+  // Remet après capture
   card.classList.remove("hide-copy-ui");
 
   await navigator.clipboard.write([
     new ClipboardItem({ "image/png": blob })
   ]);
 
-  // --- ✨ Summoning animation ---
-  hint.style.opacity = 0;      // hide "click to copy"
-  summon.style.opacity = 1;    // show "[summoning…]"
-  
-  setTimeout(() => {
-    summon.style.opacity = 0;     // hide summoning
-    feedback.style.opacity = 1;   // show "copied!"
-    card.classList.add("copied");
-  }, 450); // duration of summoning phase
+  // Animation copied!
+  card.classList.add("copied");
+  feedback.style.opacity = 1;
+  hint.style.opacity = 0;
 
   setTimeout(() => {
     feedback.style.opacity = 0;
     card.classList.remove("copied");
-  }, 900);
+  }, 700);
 }
 
-
-  setTimeout(() => {
-    card.classList.remove("hide-copy-ui");
-  }, 900);
-}
 document.getElementById("card").addEventListener("click", copyCardToClipboard);
 
 // --- Tweet button (no image upload, just text) ---
