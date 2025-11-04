@@ -54,6 +54,7 @@ avatarInput.addEventListener("change", () => {
   avatarPreview.src = f ? URL.createObjectURL(f) : "pepefront.png";
 });
 
+// --- Copy card to clipboard ---
 async function copyCardToClipboard() {
   const card = document.getElementById("card");
   const cardContent = document.getElementById("cardContent");
@@ -61,7 +62,6 @@ async function copyCardToClipboard() {
   const feedback = document.querySelector(".copy-feedback");
   const summon = document.querySelector(".copy-summon");
 
-  // Hide UI overlays in the screenshot
   card.classList.add("hide-copy-ui");
 
   const blob = await htmlToImage.toBlob(cardContent, {
@@ -75,7 +75,7 @@ async function copyCardToClipboard() {
     new ClipboardItem({ "image/png": blob })
   ]);
 
-  // ✧⟡ Summoning moment — now lasts 3 seconds ✧⟡
+  // Summoning effect
   card.classList.add("summoning");
   summon.style.opacity = 1;
   hint.style.opacity = 0;
@@ -84,7 +84,6 @@ async function copyCardToClipboard() {
     summon.style.opacity = 0;
     card.classList.remove("summoning");
 
-    // copied animation (unchanged)
     card.classList.add("copied");
     feedback.style.opacity = 1;
 
@@ -94,12 +93,12 @@ async function copyCardToClipboard() {
       hint.style.opacity = "";
     }, 750);
 
-  }, 2000); // <<< 2 seconds now
+  }, 2000);
 }
 
 document.getElementById("card").addEventListener("click", copyCardToClipboard);
 
-// --- Tweet button (no image upload, just text) ---
+// --- Tweet button ---
 function shareToTwitter() {
   const tweetText = encodeURIComponent(
 `i have taken the pledge. the ritual grows stronger 🕯️
@@ -111,39 +110,31 @@ take yours on https://nafyn.github.io/ritual-communitycard/`
   window.open(url, "_blank");
 }
 
-document.getElementById("pledgeBtn").addEventListener("click", async () => {
-  await incrementPledge();   // ⬅️ met à jour le compteur
-  shareToTwitter();          // ⬅️ ouvre Twitter ensuite
-});
+document.getElementById("pledgeBtn").addEventListener("click", shareToTwitter);
 
-
-// Initial render
 update();
 
-// --- Create the summoning label dynamically (no HTML edits) ---
+// --- Create the summoning label ---
 const card = document.getElementById("card");
 const summonSpan = document.createElement("span");
 summonSpan.className = "copy-summon";
 summonSpan.textContent = "[ summoning… ] ✧⟡";
 card.appendChild(summonSpan);
 
-const PLEDGE_URL = "https://api.npoint.io/290a358899c1e5d5553e";
+// --- Load pledge count ---
+fetch("https://api.npoint.io/290a358899c1e5d5553e")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("pledgeCount").textContent =
+      `${data.pledgeCount} initiates have taken the pledge · 🕯️`;
+  });
 
-// Load & display count
-async function loadPledge() {
-  const res = await fetch(PLEDGE_URL + `?t=${Date.now()}`, { cache: "no-store" });
-  const data = await res.json();
-  document.getElementById("pledgeCount").textContent =
-    `${data.pledgeCount} initiates have taken the pledge · 🕯️`;
-}
-
-// Increment count
 async function incrementPledge() {
-  const res = await fetch(PLEDGE_URL + `?t=${Date.now()}`, { cache: "no-store" });
+  const res = await fetch("https://api.npoint.io/290a358899c1e5d5553e");
   const data = await res.json();
   const newCount = data.pledgeCount + 1;
 
-  await fetch(PLEDGE_URL, {
+  await fetch("https://api.npoint.io/290a358899c1e5d5553e", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ pledgeCount: newCount })
@@ -153,8 +144,8 @@ async function incrementPledge() {
     `${newCount} initiates have taken the pledge · 🕯️`;
 }
 
-// On load
-loadPledge();
-
-// On pledge click
-document.getElementById("pledgeBtn").addEventListener("click", incrementPledge);
+// → on exécute increment + tweet ensemble :
+document.getElementById("pledgeBtn").addEventListener("click", async () => {
+  await incrementPledge();
+  shareToTwitter();
+});
