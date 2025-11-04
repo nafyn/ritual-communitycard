@@ -57,22 +57,34 @@ async function copyCardToClipboard() {
   const hint = document.querySelector(".copy-hint");
   const feedback = document.querySelector(".copy-feedback");
 
-  const blob = await htmlToImage.toBlob(card, { pixelRatio: 2 });
+  // → Taille réelle de la carte (pas le rendu dans le layout)
+  const rect = card.getBoundingClientRect();
+
+  const blob = await htmlToImage.toBlob(card, {
+    pixelRatio: 2,
+    width: rect.width,
+    height: rect.height,
+    style: {
+      transform: "none",   // ← très important : empêche de capturer le scale du layout
+      margin: "0",
+      padding: "0"
+    }
+  });
 
   await navigator.clipboard.write([
     new ClipboardItem({ "image/png": blob })
   ]);
 
+  // animation existante conservée
   card.classList.add("copied");
   feedback.style.opacity = 1;
-  hint.style.opacity = 0; //
+  hint.style.opacity = 0;
 
   setTimeout(() => {
-  feedback.style.opacity = 0;
-  card.classList.remove("copied");
-}, 700);
+    feedback.style.opacity = 0;
+    card.classList.remove("copied");
+  }, 700);
 }
-
 
 document.getElementById("card").addEventListener("click", copyCardToClipboard);
 
