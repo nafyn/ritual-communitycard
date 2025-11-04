@@ -31,7 +31,7 @@ function getGrade(role) {
 // --- Update card preview ---
 function update() {
   const pseudo = pseudoInput.value || "Unnamed Ritualist";
-  const role = roleSelect.value || "Initiate";
+  const role = roleSelect.value;
   const grade  = getGrade(role);
   const randomDesc = descs[Math.floor(Math.random() * descs.length)];
 
