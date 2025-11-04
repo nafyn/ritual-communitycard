@@ -111,7 +111,11 @@ take yours on https://nafyn.github.io/ritual-communitycard/`
   window.open(url, "_blank");
 }
 
-document.getElementById("pledgeBtn").addEventListener("click", shareToTwitter);
+document.getElementById("pledgeBtn").addEventListener("click", async () => {
+  await incrementPledge();   // ⬅️ met à jour le compteur
+  shareToTwitter();          // ⬅️ ouvre Twitter ensuite
+});
+
 
 // Initial render
 update();
