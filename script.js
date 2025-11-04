@@ -139,11 +139,11 @@ async function incrementPledge() {
   const data = await res.json();
   const newCount = data.pledgeCount + 1;
 
-  await fetch(PLEDGE_URL, {
-    method: "PUT",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({ pledgeCount: newCount })
-  });
+ await fetch(PLEDGE_URL, {
+  method: "POST",
+  headers: {"Content-Type": "application/json"},
+  body: JSON.stringify({ pledgeCount: newCount })
+});
 
   document.getElementById("pledgeCount").textContent =
     `${newCount} initiates have taken the pledge · 🕯️`;
