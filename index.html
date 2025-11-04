@@ -1,12 +1,74 @@
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ritual Card Generator</title>
-  <link rel="stylesheet" href="style.css"/>
+  
   <link rel="icon" type="image/svg+xml" href="Black.svg">
   <link rel="alternate icon" href="Black.png">
   <link rel="icon" type="image/png" href="Black.png" sizes="32x32">
-</head>  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            base: {
+              bg: '#0b0c0c',
+              soft: '#0e1311',
+              surface: '#111614',
+              card: '#141a1e',
+              border: 'rgba(255,255,255,0.06)',
+              text: '#E7ECEB',
+              sub: 'rgba(231,236,235,0.72)'
+            },
+            acc: '#0CA678',
+          },
+          boxShadow: {
+            ritual: "0 40px 120px rgba(0,0,0,.60), inset 0 0 60px rgba(12,166,120,.08)",
+            ritualHover: "0 50px 140px rgba(0,0,0,.65), inset 0 0 90px rgba(12,166,120,.22), 0 0 28px rgba(12,166,120,.25)"
+          },
+          borderRadius: {
+            card: "30px",
+          },
+          animation: {
+            pulseDot: "pulseDot 2.8s ease-in-out infinite",
+            pledgeGlow: "pledgeGlow 3.2s ease-in-out infinite",
+            shimmerGlow: "shimmerGlow .6s ease",
+            mysticPulse: "mysticPulse 3s ease-in-out forwards",
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    @layer utilities {
+      @keyframes pulseDot {
+        0%,100%{ box-shadow:0 0 8px #0CA67880; }
+        50%{ box-shadow:0 0 16px #0CA678; }
+      }
+      @keyframes pledgeGlow {
+        0%,100% { text-shadow: 0 0 6px rgba(140,255,200,0.35); }
+        50%     { text-shadow: 0 0 18px rgba(140,255,200,0.6); }
+      }
+      @keyframes shimmerGlow {
+        0%   { box-shadow: 0 0 0px rgba(120,255,180,0.0); }
+        50%  { box-shadow: 0 0 18px rgba(120,255,180,0.35); }
+        100% { box-shadow: 0 0 0px rgba(120,255,180,0.0); }
+      }
+      @keyframes mysticPulse {
+        0%   { opacity: 0; transform: scale(0.94); text-shadow: 0 0 4px rgba(130,255,200,0.15); }
+        25%  { opacity: 1; transform: scale(1.02); text-shadow: 0 0 16px rgba(150,255,200,0.35); }
+        50%  { opacity: 1; transform: scale(1.05); text-shadow: 0 0 26px rgba(150,255,200,0.55); }
+        75%  { opacity: 1; transform: scale(1.02); text-shadow: 0 0 16px rgba(150,255,200,0.38); }
+        100% { opacity: 0; transform: scale(1.00); text-shadow: 0 0 6px rgba(130,255,200,0.20); }
+      }
+    }
+  </style>
+</head> 
   
 <body>
 <header class="header">
