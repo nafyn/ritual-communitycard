@@ -53,22 +53,14 @@ avatarInput.addEventListener("change", () => {
 });
 
 async function copyCardToClipboard() {
+  const cardContent = document.getElementById("cardContent"); // ← Nouveau
   const card = document.getElementById("card");
   const hint = document.querySelector(".copy-hint");
   const feedback = document.querySelector(".copy-feedback");
 
-  // → Taille réelle de la carte (pas le rendu dans le layout)
-  const rect = card.getBoundingClientRect();
-
-  const blob = await htmlToImage.toBlob(card, {
+  const blob = await htmlToImage.toBlob(cardContent, {
     pixelRatio: 2,
-    width: rect.width,
-    height: rect.height,
-    style: {
-      transform: "none",   // ← très important : empêche de capturer le scale du layout
-      margin: "0",
-      padding: "0"
-    }
+    backgroundColor: "#0d1512" // évite le noir PNG
   });
 
   await navigator.clipboard.write([
