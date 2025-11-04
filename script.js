@@ -54,12 +54,12 @@ avatarInput.addEventListener("change", () => {
   avatarPreview.src = f ? URL.createObjectURL(f) : "pepefront.png";
 });
 
-// --- Copy image to clipboard ---
 async function copyCardToClipboard() {
   const card = document.getElementById("card");
   const cardContent = document.getElementById("cardContent");
   const hint = document.querySelector(".copy-hint");
   const feedback = document.querySelector(".copy-feedback");
+  const summon = document.querySelector(".copy-summon");
 
   // hide UI overlays in the screenshot
   card.classList.add("hide-copy-ui");
@@ -69,22 +69,31 @@ async function copyCardToClipboard() {
     backgroundColor: "#0d1512"
   });
 
-  // re-show UI
   card.classList.remove("hide-copy-ui");
 
   await navigator.clipboard.write([
     new ClipboardItem({ "image/png": blob })
   ]);
 
-  // copied animation
-  card.classList.add("copied");
-  feedback.style.opacity = 1;
+  // ✧⟡ Summoning moment ✧⟡
+  card.classList.add("summoning");
+  summon.style.opacity = 1;
   hint.style.opacity = 0;
 
   setTimeout(() => {
-    feedback.style.opacity = 0;
-    card.classList.remove("copied");
-  }, 700);
+    summon.style.opacity = 0;
+    card.classList.remove("summoning");
+
+    // Copied animation (same as before)
+    card.classList.add("copied");
+    feedback.style.opacity = 1;
+
+    setTimeout(() => {
+      feedback.style.opacity = 0;
+      card.classList.remove("copied");
+    }, 700);
+
+  }, 450);
 }
 
 document.getElementById("card").addEventListener("click", copyCardToClipboard);
@@ -105,3 +114,11 @@ document.getElementById("pledgeBtn").addEventListener("click", shareToTwitter);
 
 // Initial render
 update();
+
+// --- Create the summoning label dynamically (no HTML edits) ---
+const card = document.getElementById("card");
+const summonSpan = document.createElement("span");
+summonSpan.className = "copy-summon";
+summonSpan.textContent = "[ summoning… ] ✧⟡";
+card.appendChild(summonSpan);
+
