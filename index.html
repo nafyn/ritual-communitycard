@@ -113,34 +113,40 @@
     <!-- Preview + Card -->
     <div class="flex flex-col items-center gap-7 scale-[0.8] origin-center max-[900px]:scale-100">
 
-      <div id="card"
-        class="relative w-[min(70vw,1030px)] aspect-[1030/675] rounded-card bg-[#0f1111]
-               border border-white/5 shadow-ritual overflow-hidden cursor-pointer transition
-               hover:shadow-ritualHover hover:border-acc/50">
+     <div id="card"
+  class="relative w-[min(70vw,1030px)] aspect-[1030/675] rounded-card bg-[#0f1111]
+         border border-white/5 overflow-hidden cursor-pointer transition
+         hover:-translate-y-[6px] transform origin-top hover:scale-[0.82]
+         [box-shadow:0_40px_120px_rgba(0,0,0,.60),inset_0_0_60px_rgba(12,166,120,.08)]
+         hover:[box-shadow:0_50px_140px_rgba(0,0,0,.65),inset_0_0_90px_rgba(12,166,120,.22),0_0_28px_rgba(12,166,120,.25)]">
 
-        <div class="h-full grid grid-cols-[1fr_2fr] gap-[54px] p-[50px_60px] items-center max-[700px]:grid-cols-1 max-[700px]:p-6">
-          
-          <div class="w-[400px] h-[400px] rounded-xl bg-white/5 border border-white/10 shadow-[inset_0_0_32px_rgba(12,166,120,.18)] overflow-hidden max-[700px]:mx-auto">
-            <img id="avatarPreview" src="pepefront.png" class="w-[400px] h-[490px] object-cover" />
-          </div>
-
-          <div class="info">
-            <p id="pseudoDisplay" class="text-[56px] font-semibold -mt-5"></p>
-            <p id="roleDisplay" class="text-[30px] text-acc opacity-85 mb-3"></p>
-            <p id="descDisplay" class="text-[26px] opacity-70 italic"></p>
-          </div>
-        </div>
-
-        <div id="rarityPill"
-          class="absolute top-[50px] right-[48px] text-[22px] px-[30px] py-[16px] rounded-full border border-acc/35 bg-acc/10 text-acc">
-          Common
-        </div>
-
-        <img src="Translucent.svg" class="absolute left-[170px] top-[90px] opacity-80 mix-blend-screen" />
-
-        <span class="copy-hint absolute bottom-[38px] right-[38px] text-[18px] opacity-0 text-white/65 transition pointer-events-none">click to copy</span>
-        <span class="copy-feedback absolute bottom-[38px] right-[38px] text-[18px] opacity-0 text-[#8AF2B8] font-medium pointer-events-none">copied!</span>
+  <!-- ⬇️ *** RESTORED *** Capture-only container -->
+  <div id="cardContent" class="h-full">
+    <div class="h-full grid grid-cols-[1fr_2fr] gap-[54px] p-[50px_60px] items-center max-[700px]:grid-cols-1 max-[700px]:p-6">
+      
+      <div class="w-[400px] h-[400px] rounded-xl bg-white/5 border border-white/10 shadow-[inset_0_0_32px_rgba(12,166,120,.18)] overflow-hidden max-[700px]:mx-auto">
+        <img id="avatarPreview" src="pepefront.png" class="w-[400px] h-[490px] object-cover" />
       </div>
+
+      <div class="info">
+        <p id="pseudoDisplay" class="text-[56px] font-semibold -mt-5"></p>
+        <p id="roleDisplay" class="text-[30px] text-acc opacity-85 mb-3"></p>
+        <p id="descDisplay" class="text-[26px] opacity-70 italic"></p>
+      </div>
+    </div>
+
+    <div id="rarityPill"
+      class="absolute top-[50px] right-[48px] text-[22px] px-[30px] py-[16px] rounded-full border border-acc/35 bg-acc/10 text-acc">
+      Common
+    </div>
+
+    <img src="Translucent.svg" class="absolute left-[170px] top-[90px] opacity-80 mix-blend-screen" />
+  </div>
+
+  <!-- UI overlays -->
+  <span class="copy-hint absolute bottom-[38px] right-[38px] text-[18px] text-white/65 opacity-0 pointer-events-none transition">click to copy</span>
+  <span class="copy-feedback absolute bottom-[38px] right-[38px] text-[18px] text-[#8AF2B8] opacity-0 font-medium pointer-events-none transition">copied!</span>
+</div>
 
       <button id="pledgeBtn"
         class="px-8 py-4 rounded-full border-2 border-[#A6FFC0]/60 outline outline-[3px] outline-[#A6FFC0]/15
