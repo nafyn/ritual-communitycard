@@ -123,11 +123,36 @@ summonSpan.className = "copy-summon";
 summonSpan.textContent = "[ summoning… ] ✧⟡";
 card.appendChild(summonSpan);
 
-// --- Load pledge count ---
-fetch("https://api.npoint.io/290a358899c1e5d5553e")
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("pledgeCount").textContent =
-      `${data.count} initiates have taken the pledge · 🕯️`;
+const PLEDGE_URL = "https://api.npoint.io/290a358899c1e5d5553e";
+
+// Load and display count
+async function loadPledge() {
+  const res = await fetch(PLEDGE_URL);
+  const data = await res.json();
+  document.getElementById("pledgeCount").textContent =
+    `${data.pledgeCount} initiates have taken the pledge · 🕯️`;
+}
+
+// Increment when user clicks pledge
+async function incrementPledge() {
+  const res = await fetch(PLEDGE_URL);
+  const data = await res.json();
+  const newCount = data.pledgeCount + 1;
+
+  await fetch(PLEDGE_URL, {
+    method: "PUT",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ pledgeCount: newCount })
   });
+
+  document.getElementById("pledgeCount").textContent =
+    `${newCount} initiates have taken the pledge · 🕯️`;
+}
+
+// Load on page start
+loadPledge();
+
+// Add counter update to your pledge button
+document.getElementById("pledgeBtn").addEventListener("click", incrementPledge);
+
 
