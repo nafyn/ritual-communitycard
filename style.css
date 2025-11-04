@@ -215,8 +215,8 @@ input:focus, select:focus {
     box-shadow .45s ease;
 }
 
-.card:hover {
-  transform: translateY(-6px);
+.preview-zone .card:hover {
+  transform: scale(0.82) translateY(-6px); /* conserve ton scale + ajoute le lift */
   border-color: rgba(12,166,120,0.45);
   box-shadow:
     0 50px 140px rgba(0,0,0,.65),
