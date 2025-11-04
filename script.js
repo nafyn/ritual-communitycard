@@ -31,12 +31,12 @@ function getGrade(role) {
 // --- Update card preview ---
 function update() {
   const pseudo = pseudoInput.value || "Unnamed Ritualist";
-  const role = roleSelect.value;
+  const role = roleSelect.value || "Initiate";
   const grade  = getGrade(role);
   const randomDesc = descs[Math.floor(Math.random() * descs.length)];
 
   pseudoDisplay.textContent = pseudo;
-  roleDisplay.textContent   = `${role} · ${grade}`;
+  roleDisplay.innerHTML = `<span class="role">${role}</span> <span class="dot">·</span> <span class="grade">${grade}</span>`;
   descDisplay.textContent   = randomDesc;
 
   rarityPill.textContent = grade;
