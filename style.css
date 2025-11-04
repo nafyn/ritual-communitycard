@@ -197,6 +197,7 @@ input:focus, select:focus {
     inset 0 0 60px rgba(12,166,120,.08);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card-inner {
@@ -284,5 +285,26 @@ input:focus, select:focus {
 #pledgeBtn:active {
   transform: scale(0.96);
   background: rgba(15, 60, 35, 0.8);
+}
+
+.copy-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(200,255,200,0.8);
+  font-size: 1.1rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  background: rgba(0,0,0,0.10);
+  backdrop-filter: blur(2px);
+  border-radius: inherit;
+}
+
+.card:hover .copy-hint {
+  opacity: 1;
 }
 
