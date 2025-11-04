@@ -286,7 +286,7 @@ input:focus, select:focus {
   background: rgba(15, 60, 35, 0.8);
 }
 
-.copy-hint {
+.copy-hint, .copy-feedback {
   position: absolute;
   bottom: 38px;
   right: 38px;
@@ -303,15 +303,9 @@ input:focus, select:focus {
 }
 
 .copy-feedback {
-  position: absolute;
-  bottom: 38px;
-  right: 38px;
-  font-size: 18px; /* ← même taille */
-  font-weight: 500;
-  color: #8af2b8;
+  color: #8AF2B8;
   opacity: 0;
-  transition: opacity .25s ease;
-  pointer-events: none;
+  font-weight: 500;
 }
 
 .card.copied {
