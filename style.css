@@ -169,10 +169,6 @@ input:focus, select:focus {
   transition: transform .25s ease;
   transform: scale(0.82);
 }
-@media (max-height: 900px) { .preview-zone .card { transform: scale(.90); } }
-@media (max-height: 800px) { .preview-zone .card { transform: scale(.80); } }
-@media (max-height: 700px) { .preview-zone .card { transform: scale(.70); } }
-
 .card {
   width: min(70vw, 1030px);
   aspect-ratio: 1030/675;
@@ -344,7 +340,7 @@ input:focus, select:focus {
   }
 }
 
-/* === MOBILE LAYOUT FIX === */
+/* === MOBILE LAYOUT FIX COMPLET === */
 @media (max-width: 900px) {
 
   /* Layout devient vertical */
@@ -352,67 +348,55 @@ input:focus, select:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     padding-top: 100px;
     gap: 40px;
   }
 
-  /* Panneau de création centré */
   .controls {
-    margin: 0 auto;
-    width: 90%;
+    width: 92%;
     max-width: 360px;
+    transform: none;
+    margin: 0 auto;
   }
 
-  /* La carte se centre correctement */
   .preview-zone {
-    width: 100%;
-    display: flex;
-    justify-content: center;
     transform: scale(0.85);
-    transform-origin: top center;
   }
 
-  /* La carte passe en colonne interne */
+  /* Carte centrée et compacte */
+  .card {
+    width: 90vw;
+    max-width: 420px;
+    aspect-ratio: 1030/675;
+  }
+
   .card-inner {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 24px;
-    padding: 32px;
+    gap: 22px;
+    padding: 28px;
   }
 
-  /* Avatar adapté */
+  /* Avatar mobile */
   .avatar-wrapper {
-    width: 240px;
-    height: 240px;
+    width: 230px;
+    height: 230px;
     margin: 0 auto;
   }
+
   .avatar {
-    width: 240px;
-    height: auto;
+    width: 230px;
+    height: 290px;
   }
 
-  /* Typographies mobile */
-  .pseudo {
-    font-size: 38px;
-  }
-  .role-line {
-    font-size: 20px;
-  }
-  .desc {
-    font-size: 17px;
-  }
+  /* Text sizes responsive */
+  .pseudo { font-size: 34px; }
+  .role-line { font-size: 19px; }
+  .desc { font-size: 16px; }
 
-  /* Bouton recadré */
+  /* Bouton sous la carte */
   #pledgeBtn {
-    margin-top: 16px;
-  }
-
-  /* Anti-scroll horizontal */
-  body {
-    overflow-x: hidden;
-  }
-}
+    margin-top: 12px
 
 /* Mini-écrans (iPhone petit / Safari barre basse) */
 @media (max-width: 700px) {
