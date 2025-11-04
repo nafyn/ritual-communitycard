@@ -93,43 +93,22 @@ body::after {
 /* --- compteur mystique vert --- */
 .pledge-counter {
   color: #8AF2B8;
-  pointer-events: auto;
   opacity: .85;
-  text-shadow: 0 0 4px rgba(140,255,200,0.25);
-  animation: pledgeGlow 3s ease-in-out infinite;
+  pointer-events: none; /* ← pour qu'il ne clique pas */
+  text-shadow: 0 0 6px rgba(140,255,200,0.35);
+  animation: pledgeGlow 3.2s ease-in-out infinite;
   transition: opacity .35s ease, text-shadow .35s ease;
 }
 
 @keyframes pledgeGlow {
-  0%,100% { text-shadow: 0 0 4px rgba(140,255,200,0.25); }
-  50%     { text-shadow: 0 0 14px rgba(140,255,200,0.45); }
+  0%,100% { text-shadow: 0 0 6px rgba(140,255,200,0.35); }
+  50%     { text-shadow: 0 0 18px rgba(140,255,200,0.6); }
 }
 
-.pledge-counter:hover {
+.footer .pledge-counter:hover {
   opacity: 1;
-  text-shadow: 0 0 18px rgba(150,255,200,0.65);
+  text-shadow: 0 0 26px rgba(150,255,200,0.85);
 }
-
-/* --- compteur mystique vert --- */
-.pledge-counter {
-  color: #8AF2B8;
-  pointer-events: auto;
-  opacity: .85;
-  text-shadow: 0 0 4px rgba(140,255,200,0.25);
-  animation: pledgeGlow 3s ease-in-out infinite;
-  transition: opacity .35s ease, text-shadow .35s ease;
-}
-
-@keyframes pledgeGlow {
-  0%,100% { text-shadow: 0 0 4px rgba(140,255,200,0.25); }
-  50%     { text-shadow: 0 0 14px rgba(140,255,200,0.45); }
-}
-
-.pledge-counter:hover {
-  opacity: 1;
-  text-shadow: 0 0 18px rgba(150,255,200,0.65);
-}
-
 
 /* Green dot */
 .header .dot {
