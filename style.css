@@ -41,14 +41,25 @@ body::after {
   opacity: .55;
 }
 
-.header, .footer {
+.header {
   position: fixed;
-  left: 32px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 22px 32px;
   display: flex;
   align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 500;
   pointer-events: none;
+
+  /* ✨ Ligne subtile comme le dashboard */
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(11,12,12,0.65);
+  backdrop-filter: blur(12px);
 }
-.header { top: 22px; font-size: 18px; font-weight: 500; }
+
 .footer a { pointer-events: auto; color: #d8e2dd; text-decoration: none; }
 .footer a:hover { color: #0CA678; }
 
