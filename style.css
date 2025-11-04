@@ -330,15 +330,17 @@ input:focus, select:focus {
   opacity: 0 !important;
 }
 
-/* Improve left card alignment */
 .controls {
-  width: 320px;
-  border-radius: 22px;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.06);
-  backdrop-filter: blur(12px);
-  padding: 32px 28px;
-  gap: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 280px;
+  padding: 26px 24px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.015);
+  border: 1px solid rgba(255,255,255,.04);
+  backdrop-filter: blur(10px);
+  transform: translateY(-30px);
 }
 
 /* Placeholder style for select */
@@ -349,21 +351,24 @@ option {
   color: #E7ECEB;
 }
 
-/* Pretty upload field */
 .file-label {
+  display: block;
   padding: 14px 16px;
-  background: rgba(255,255,255,.03);
+  background: rgba(255,255,255,.02);
   border: 1px solid rgba(255,255,255,.08);
   border-radius: 12px;
   font-size: 15px;
-  color: rgba(255,255,255,.40);
+  color: rgba(255,255,255,.38);
   cursor: pointer;
   transition: .25s;
 }
+
 .file-label:hover {
   border-color: rgba(12,166,120,.35);
 }
-
 .file-label input {
   display: none;
+}
+select:invalid {
+  color: rgba(255,255,255,.38);
 }
