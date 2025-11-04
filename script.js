@@ -110,20 +110,20 @@ take yours on https://nafyn.github.io/ritual-communitycard/`
 
 const COUNTER_URL = "https://ritual-counter-proxy.nafnafyng.workers.dev/api/pledge";
 
-// Load count on page load
+// Display initial
 fetch(COUNTER_URL)
   .then(res => res.json())
   .then(data => {
     document.getElementById("pledgeCount").textContent =
-      `${data.data.up_count} initiates have taken the pledge · 🕯️`;
+      `${data.count} initiates have taken the pledge · 🕯️`;
   });
 
 document.getElementById("pledgeBtn").addEventListener("click", async () => {
-  const res = await fetch(`${COUNTER_URL}/up`, { method: "POST" });
+  const res = await fetch(`${COUNTER_URL}/increment`, { method: "POST" });
   const data = await res.json();
 
   document.getElementById("pledgeCount").textContent =
-    `${data.data.up_count} initiates have taken the pledge · 🕯️`;
+    `${data.count} initiates have taken the pledge · 🕯️`;
 
   shareToTwitter();
 });
