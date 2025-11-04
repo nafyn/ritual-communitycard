@@ -383,3 +383,32 @@ option {
 select:invalid {
   color: rgba(255,255,255,.38);
 }
+
+.copy-summon {
+  position: absolute;
+  bottom: 38px;
+  right: 38px;
+  font-size: 18px;
+  opacity: 0;
+  color: #8AF2B8;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  text-shadow: 0 0 8px rgba(150,255,200,0.45);
+}
+
+/* state triggered for ~450ms */
+.card.summoning .copy-summon {
+  opacity: 1;
+  animation: mysticPulse 0.55s ease-in-out;
+}
+
+@keyframes mysticPulse {
+  0%   { opacity: 0; transform: scale(0.9);   text-shadow: 0 0 4px rgba(130,255,200,0.25); }
+  40%  { opacity: 1; transform: scale(1.05);  text-shadow: 0 0 14px rgba(150,255,200,0.55); }
+  100% { opacity: 0; transform: scale(1.0);   text-shadow: 0 0 4px rgba(130,255,200,0.3); }
+}
+
+/* Prevent overlap with click-to-copy */
+.card.summoning .copy-hint {
+  opacity: 0 !important;
+}
