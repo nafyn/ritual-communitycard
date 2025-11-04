@@ -20,8 +20,7 @@ const descs = [
 ];
 
 // ✅ Pick description ONCE
-const fixedDesc = descs[Math.floor(Math.random() * descs.length)];
-descDisplay.textContent = fixedDesc;
+descDisplay.textContent = descs[Math.floor(Math.random() * descs.length)];
 
 // --- Role → Rarity ---
 function getGrade(role) {
@@ -39,10 +38,15 @@ function update() {
   const grade  = getGrade(role);
 
   pseudoDisplay.textContent = pseudo;
-  roleDisplay.innerHTML = `<span class="role">${role}</span> <span class="dot">·</span> <span class="grade">${grade}</span>`;
+
+  // Role + rarity rendered inline
+  roleDisplay.innerHTML = `
+    <span class="text-acc">${role}</span>
+    <span class="opacity-40 mx-1">·</span>
+    <span class="text-white/60">${grade}</span>
+  `;
 
   rarityPill.textContent = grade;
-  rarityPill.className   = "rarity-pill " + grade.toLowerCase();
 }
 pseudoInput.addEventListener("input", update);
 roleSelect.addEventListener("change", update);
@@ -55,29 +59,35 @@ avatarInput.addEventListener("change", () => {
 
 // --- Copy card to clipboard ---
 async function copyCardToClipboard() {
-  const card = document.getElementById("card");
-  const cardContent = document.getElementById("cardContent");
-  const hint = document.querySelector(".copy-hint");
-  const feedback = document.querySelector(".copy-feedback");
-  const summon = document.querySelector(".copy-summon");
+  const card       = document.getElementById("card");
+  const hint       = document.querySelector(".copy-hint");
+  const feedback   = document.querySelector(".copy-feedback");
+  const summon     = document.querySelector(".copy-summon");
+  const cardContent = card.cloneNode(true);
 
-  card.classList.add("hide-copy-ui");
+  // Remove UI overlays
+  hint.style.opacity = "0";
+  summon.style.opacity = "0";
+  feedback.style.opacity = "0";
+
+  // Create clean export wrapper
+  const temp = document.createElement("div");
+  temp.style.position = "fixed";
+  temp.style.left = "-9999px";
+  temp.appendChild(cardContent);
+  document.body.appendChild(temp);
 
   const blob = await htmlToImage.toBlob(cardContent, {
     pixelRatio: 2,
     backgroundColor: "#0d1512"
   });
 
-  card.classList.remove("hide-copy-ui");
+  document.body.removeChild(temp);
+  await navigator.clipboard.write([ new ClipboardItem({ "image/png": blob }) ]);
 
-  await navigator.clipboard.write([
-    new ClipboardItem({ "image/png": blob })
-  ]);
-
-  // Summoning effect
+  // Summoning animation
   card.classList.add("summoning");
   summon.style.opacity = 1;
-  hint.style.opacity = 0;
 
   setTimeout(() => {
     summon.style.opacity = 0;
@@ -94,25 +104,26 @@ async function copyCardToClipboard() {
 
   }, 2000);
 }
+
 document.getElementById("card").addEventListener("click", copyCardToClipboard);
 
-// --- Tweet button (only tweet now) ---
+// --- Tweet button ---
 document.getElementById("pledgeBtn").addEventListener("click", () => {
   const tweetText = encodeURIComponent(
 `i have taken the pledge. the ritual grows stronger 🕯️
 
 take yours on https://nafyn.github.io/ritual-communitycard/`
   );
-
-  const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
-  window.open(tweetUrl, "_blank");
+  window.open(`https://twitter.com/intent/tweet?text=${tweetText}`, "_blank");
 });
 
-// --- Create the summoning label ---
-const card = document.getElementById("card");
-const summonSpan = document.createElement("span");
-summonSpan.className = "copy-summon";
-summonSpan.textContent = "[ summoning… ] ✧⟡";
-card.appendChild(summonSpan);
+// --- Create the summoning label if missing ---
+if (!document.querySelector(".copy-summon")) {
+  const card = document.getElementById("card");
+  const summonSpan = document.createElement("span");
+  summonSpan.className = "copy-summon absolute bottom-[38px] right-[38px] text-[18px] text-[#8AF2B8] opacity-0 pointer-events-none";
+  summonSpan.textContent = "[ summoning… ] ✧⟡";
+  card.appendChild(summonSpan);
+}
 
 update();
