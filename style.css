@@ -396,16 +396,17 @@ select:invalid {
   text-shadow: 0 0 8px rgba(150,255,200,0.45);
 }
 
-/* state triggered for ~450ms */
 .card.summoning .copy-summon {
   opacity: 1;
-  animation: mysticPulse 0.55s ease-in-out;
+  animation: mysticPulse 3s ease-in-out forwards;
 }
 
 @keyframes mysticPulse {
-  0%   { opacity: 0; transform: scale(0.9);   text-shadow: 0 0 4px rgba(130,255,200,0.25); }
-  40%  { opacity: 1; transform: scale(1.05);  text-shadow: 0 0 14px rgba(150,255,200,0.55); }
-  100% { opacity: 0; transform: scale(1.0);   text-shadow: 0 0 4px rgba(130,255,200,0.3); }
+  0%   { opacity: 0; transform: scale(0.94); text-shadow: 0 0 4px rgba(130,255,200,0.15); }
+  25%  { opacity: 1; transform: scale(1.02); text-shadow: 0 0 16px rgba(150,255,200,0.35); }
+  50%  { opacity: 1; transform: scale(1.05); text-shadow: 0 0 26px rgba(150,255,200,0.55); }
+  75%  { opacity: 1; transform: scale(1.02); text-shadow: 0 0 16px rgba(150,255,200,0.38); }
+  100% { opacity: 0; transform: scale(1.00); text-shadow: 0 0 6px rgba(130,255,200,0.20); }
 }
 
 /* Prevent overlap with click-to-copy */
