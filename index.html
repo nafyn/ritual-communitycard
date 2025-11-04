@@ -67,6 +67,32 @@
         100% { opacity: 0; transform: scale(1.00); text-shadow: 0 0 6px rgba(130,255,200,0.20); }
       }
     }
+    
+@layer base {
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    background:
+      radial-gradient(circle at 65% 40%, rgba(12,166,120,.18), transparent 55%),
+      radial-gradient(circle at 30% 80%, rgba(12,166,120,.12), transparent 60%);
+    filter: blur(120px);
+    opacity: .8;
+    pointer-events: none;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 60% 40%, rgba(12,166,120,.12), transparent 55%),
+      radial-gradient(circle at 20% 80%, rgba(12,166,120,.10), transparent 60%);
+    mix-blend-mode: lighten;
+    filter: blur(90px);
+    opacity: .55;
+    pointer-events: none;
+  }
+}
   </style>
 </head> 
   
